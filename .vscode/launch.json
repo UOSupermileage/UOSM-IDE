@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "name": "Python: Motor Control GUI",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
