@@ -18,11 +18,16 @@ class Notebook(aui.AuiNotebook):
     ):
         super().__init__(parent, id, pos, size, style, agwStyle, name)
 
-    def __AddPage(self, panel: wx.Panel, label: str):
-        self.AddPage(panel, label)
+    def OnTabEndDrag(self, event):
+        """Undock the tab"""
+        super().OnTabEndDrag(event)
 
-    def __PopPage(self, index):
-        pass
+        page_index = event.GetSelection()
+        print(page_index)
+
+        if page_index >= 0:
+            self.FloatPage(page_index)
+            self.Update()
 
     def DisplayPanel(self, title: str, panel: wx.Panel):
         index: int = self.GetPageIndex(panel)
@@ -32,12 +37,3 @@ class Notebook(aui.AuiNotebook):
             self.AddPage(panel, title, select=True)
         else:
             self.SetSelection(index)
-
-    # def UndockPage(self, PanelType):
-    #     frame = FloatingWindow(self.GetTopLevelParent(), title)
-    #     panel = PanelManager.CreatePanel(panelKey, frame)
-    #     sizer = wx.BoxSizer(wx.VERTICAL)
-    #     sizer.Add(panel, 1, wx.EXPAND)
-    #     frame.SetSizer(sizer)
-
-    #     frame.Show()
