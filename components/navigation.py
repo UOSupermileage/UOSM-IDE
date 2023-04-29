@@ -45,13 +45,4 @@ class TreeView(wx.TreeCtrl):
 
         data: NavigationTreeItemData = self.GetItemData(item)
 
-        self.OpenWindow(self.GetItemText(item), data.panelKey)
-
-    def OpenWindow(self, title: str, panelKey: PanelType):
-        frame = FloatingWindow(self.GetTopLevelParent(), title)
-        panel = PanelManager.CreatePanel(panelKey, frame)
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(panel, 1, wx.EXPAND)
-        frame.SetSizer(sizer)
-
-        frame.Show()
+        self.panelManager.OpenPanel(self.GetItemText(item), data.panelKey)
