@@ -9,6 +9,7 @@ class Notebook(aui.AuiNotebook):
     def __init__(
         self,
         parent,
+        datasource,
         id=wx.ID_ANY,
         pos=wx.DefaultPosition,
         size=wx.DefaultSize,
@@ -17,6 +18,7 @@ class Notebook(aui.AuiNotebook):
         name="Notebook",
     ):
         super().__init__(parent, id, pos, size, style, agwStyle, name)
+        self.datasource = datasource
 
     def OnTabEndDrag(self, event):
         """Undock the tab"""

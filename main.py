@@ -2,6 +2,7 @@ import wx
 from components.PanelManager import PanelManager
 from components.navigation import TreeView
 from components.notebook import Notebook
+from components.DataSource import DataSource
 
 
 class MainFrame(wx.Frame):
@@ -10,12 +11,13 @@ class MainFrame(wx.Frame):
             None, title="Tree View Example", size=(1000, 800)
         )
         pm = PanelManager(defaultParent=self)
+        ds = DataSource()
 
         self.splitter = wx.SplitterWindow(self)
 
         # Create views for inside the splitter
         self.treeView = TreeView(self.splitter, pm)
-        self.notebook = Notebook(self.splitter)
+        self.notebook = Notebook(self.splitter, ds)
 
         pm.RegisterPanelTarget(self.notebook)
 
