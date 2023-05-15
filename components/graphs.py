@@ -3,7 +3,7 @@ import wx
 import numpy as np
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
-from components.DataSource import DataObservable, ObservableData
+from components.DataSources import DataObservable, ObservableData
 from data.PanelData import GraphPanelData
 
 

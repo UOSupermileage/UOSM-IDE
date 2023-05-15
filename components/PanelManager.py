@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Dict
 import wx
 from enum import Enum
-from components.DataSource import ObservableData
+from components.DataSources import ObservableData
 from components.editors import EditorPanel
 
 from components.graphs import GraphPanel, GraphPanelData

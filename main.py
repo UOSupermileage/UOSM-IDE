@@ -1,8 +1,9 @@
 import wx
+from components.DataCollectors import DataCollectorManager, MockValueDataCollector
 from components.PanelManager import PanelManager
 from components.navigation import TreeView
 from components.notebook import Notebook
-from components.DataSource import DataSource
+from components.DataSources import DataSource, ObservableData
 
 
 class MainFrame(wx.Frame):
@@ -10,6 +11,9 @@ class MainFrame(wx.Frame):
         super(MainFrame, self).__init__(None, title="UOSM IDE", size=(1000, 800))
         pm = PanelManager(defaultParent=self)
         ds = DataSource()
+        dc = MockValueDataCollector(ds, ObservableData.ACTUAL_TORQUE)
+        dcm = DataCollectorManager()
+        dcm.Register(dc)
 
         self.splitter = wx.SplitterWindow(self)
 

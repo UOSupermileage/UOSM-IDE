@@ -1,7 +1,7 @@
 from abc import ABC
 from dataclasses import dataclass
 
-from components.DataSource import ObservableData
+from components.DataSources import ObservableData
 
 
 @dataclass
