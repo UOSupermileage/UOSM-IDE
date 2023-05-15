@@ -7,9 +7,7 @@ from components.DataSource import DataSource
 
 class MainFrame(wx.Frame):
     def __init__(self):
-        super(MainFrame, self).__init__(
-            None, title="Tree View Example", size=(1000, 800)
-        )
+        super(MainFrame, self).__init__(None, title="UOSM IDE", size=(1000, 800))
         pm = PanelManager(defaultParent=self)
         ds = DataSource()
 

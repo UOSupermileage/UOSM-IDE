@@ -1,17 +1,10 @@
-from dataclasses import dataclass
 import wx
-import wx.lib.agw.aui as aui
 
 import numpy as np
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
 from components.DataSource import DataObservable, ObservableData
-
-
-@dataclass
-class GraphPanelData:
-    title: str
-    observableData: ObservableData
+from data.PanelData import GraphPanelData
 
 
 class GraphPanel(wx.Panel):

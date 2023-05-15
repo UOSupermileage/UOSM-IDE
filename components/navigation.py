@@ -18,7 +18,7 @@ class TreeView(wx.TreeCtrl):
 
         self.panelManager = panelManager
 
-        root = self.AddRoot("STM")
+        root = self.AddRoot("Tools")
         controlModes = self.AppendItem(root, "Graphs")
         self.AppendItem(
             controlModes,
@@ -34,6 +34,13 @@ class TreeView(wx.TreeCtrl):
             controlModes,
             "Position Graph",
             data=NavigationTreeItemData(PanelType.POSITION_GRAPH),
+        )
+
+        editors = self.AppendItem(root, "Editors")
+        self.AppendItem(
+            editors,
+            "Favorites",
+            data=NavigationTreeItemData(PanelType.FAVORITES_VALUE_EDITOR),
         )
 
         self.Bind(wx.EVT_TREE_ITEM_ACTIVATED, self.OnActivated)
