@@ -12,7 +12,7 @@ class PanelData(ABC):
 @dataclass
 class GraphPanelData(PanelData):
     title: str
-    observableData: ObservableData
+    observing: list[ObservableData]
 
 
 @dataclass

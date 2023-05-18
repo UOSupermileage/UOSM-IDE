@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Dict
 import wx
 from enum import Enum
-from components.DataSources import ObservableData
+from components.DataSources import DataSource, ObservableData
 from components.editors import EditorPanel
 
 from components.graphs import GraphPanel, GraphPanelData
@@ -32,7 +32,10 @@ class PanelType(Enum):
     def GetData(self) -> PanelData:
         match self:
             case PanelType.TORQUE_GRAPH:
-                return GraphPanelData("Torque Graph", None)
+                return GraphPanelData(
+                    "Torque Graph",
+                    [ObservableData.ACTUAL_TORQUE, ObservableData.TARGET_TORQUE],
+                )
             case PanelType.VELOCITY_GRAPH:
                 return GraphPanelData("Velocity Graph", None)
             case PanelType.POSITION_GRAPH:
@@ -48,15 +51,24 @@ class PanelManager:
     panels: Dict[PanelType, wx.Panel]
     defaultParent: wx.Frame
 
-    def __init__(self, defaultParent) -> None:
+    def __init__(self, defaultParent, dataSource: DataSource) -> None:
         self.target = None
         self.panels = {}
         self.defaultParent = defaultParent
+        self.dataSource = dataSource
 
     def __CreatePanel(self, type: PanelType, parent: any) -> wx.Panel:
         match type.GetCategory():
             case PanelCategory.GRAPH:
-                return GraphPanel(parent, type.GetData())
+                data: GraphPanelData = type.GetData()
+
+                panel = GraphPanel(parent, data)
+
+                for observable in data.observables:
+                    print("Registering observable")
+                    self.dataSource.Register(observable, panel)
+
+                return panel
             case PanelCategory.VALUE_EDITOR:
                 return EditorPanel(parent, type.GetData())
 

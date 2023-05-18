@@ -34,6 +34,7 @@ class DataObservable(Protocol):
         pass
 
 
+# TODO: NEED TO TIMESTAMP DATA!!!
 class DataSource:
     """Holds data for the IDE. It is the source of truth for the application."""
 
@@ -59,6 +60,8 @@ class DataSource:
                     self.cache[key].pop(0)
 
                 self.cache[key].append(data)
+
+                print("Cache data:", self.cache)
             case StorageCategory.VALUE:
                 self.cache[key] = data
 

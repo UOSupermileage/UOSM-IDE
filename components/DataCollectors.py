@@ -27,6 +27,7 @@ class MockValueDataCollector(DataCollector):
         self.max = max
 
     def Collect(self) -> None:
+        print("Collecting Mock Data")
         self.dataSource.ReceiveData(self.type, random.randrange(self.min, self.max, 1))
 
 
@@ -70,6 +71,7 @@ class DataCollectorManager:
 
             for item in self.collectorItems:
                 if item.timeUntilExecution <= 0:
+                    print("Triggering collect")
                     item.collector.Collect()
                     item.timeUntilExecution = item.frequency
                 else:
