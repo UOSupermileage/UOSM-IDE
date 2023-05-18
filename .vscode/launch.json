@@ -6,7 +6,6 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "justMyCode": true
         }
     ]
 }
