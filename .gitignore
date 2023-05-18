@@ -2,3 +2,4 @@ venv/
 ui.wxg~
 __pycache__
 old
+.DS_Store
