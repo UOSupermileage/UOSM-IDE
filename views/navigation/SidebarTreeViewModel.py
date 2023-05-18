@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
-from typing import Callable, NewType
+from typing import Callable
 from uuid import UUID, uuid4
 
-from navigation.NavigationManager import NavigationManager
+from navigation.NavigationManager import ViewManager
 from views.editors.PIEditorView import PIEditorView
 
 
@@ -22,7 +22,7 @@ class NavigationTreeItem:
 class SidebarTreeViewModel:
     """Viewmodel for tool sidebar"""
 
-    navigationManager: NavigationManager
+    navigationManager: ViewManager
 
     # Populated at runtime, dictionary of tree items with their id as key
     itemDict: dict[UUID, NavigationTreeItem] = {}
@@ -39,7 +39,7 @@ class SidebarTreeViewModel:
         )
     ]
 
-    def __init__(self, navigationManager: NavigationManager) -> None:
+    def __init__(self, navigationManager: ViewManager) -> None:
         self.navigationManager = navigationManager
         self.__RegisterNavigationTreeItems(self.items)
 

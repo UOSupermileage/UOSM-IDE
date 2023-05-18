@@ -3,3 +3,5 @@ ui.wxg~
 __pycache__
 old
 .DS_Store
+coverage_re/
+.pytest_cache/

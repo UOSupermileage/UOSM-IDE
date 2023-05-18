@@ -8,6 +8,11 @@ class ViewHost(Protocol):
         pass
 
 
+class ViewManager(Protocol):
+    def OpenView(view: type[wx.Panel]) -> None:
+        pass
+
+
 class NavigationManager:
     """Handle navigation in app"""
 
