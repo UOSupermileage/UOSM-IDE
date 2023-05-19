@@ -1,5 +1,7 @@
-from typing import Protocol
+from typing import Protocol, Union
 import wx
+
+from data.Datastore import DataContainer, DataObservable, Datastore
 
 
 class ViewHost(Protocol):
@@ -17,8 +19,13 @@ class NavigationManager:
     """Handle navigation in app"""
 
     target: ViewHost
+    datastore: Datastore
 
     views: dict[type[wx.Panel], wx.Panel] = {}
+
+    def __init__(self, datastore: Datastore, target: ViewHost = None) -> None:
+        self.datastore = datastore
+        self.target = target
 
     def SetTarget(self, target: ViewHost) -> None:
         self.target = target
@@ -37,6 +44,6 @@ class NavigationManager:
         self.target.DisplayView(self.views[view])
 
     def __InstantiateView(self, view: type[wx.Panel]) -> wx.Panel:
-        v = view(parent=self.target, viewManager=self)
+        v = view(parent=self.target, viewManager=self, datastore=self.datastore)
         v.SetLabel(getattr(v, "title", "Default Title"))
         return v

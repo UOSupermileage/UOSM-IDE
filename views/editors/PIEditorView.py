@@ -1,6 +1,9 @@
 import wx
 import wx.dataview as dv
 
+from data.Data import DataKey
+from views.editors.PIEditorViewModel import PIEditorViewModel
+
 
 class PIEditorView(wx.Panel):
     """View for PI Editor"""
@@ -9,6 +12,8 @@ class PIEditorView(wx.Panel):
 
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent)
+
+        self.viewmodel = PIEditorViewModel(self, args, **kwargs)
 
         self.tree = dv.TreeListCtrl(
             self, style=wx.TR_DEFAULT_STYLE | wx.TR_EDIT_LABELS | wx.TR_ROW_LINES
@@ -22,3 +27,6 @@ class PIEditorView(wx.Panel):
 
         self.SetSizer(sizer)
         self.Layout()
+
+    def Refresh(self) -> None:
+        print("Refreshing view")

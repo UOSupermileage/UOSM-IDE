@@ -1,5 +1,5 @@
 import wx
-from data.Datastore import Datastore
+from data.Datastore import AppDatastore, Datastore
 from navigation.NavigationManager import NavigationManager
 from views.navigation.AppNotebookView import AppNotebookView
 from views.navigation.SidebarTreeView import SidebarTreeView
@@ -12,8 +12,8 @@ class AppView(wx.Frame):
     def __init__(self):
         super().__init__(None, title="UOSM IDE", size=(1000, 800))
 
-        self.navigationManager = NavigationManager()
-        self.datastore = Datastore()
+        self.datastore = AppDatastore()
+        self.navigationManager = NavigationManager(self.datastore)
 
         self.splitter = wx.SplitterWindow(self)
 
